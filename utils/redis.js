@@ -13,6 +13,12 @@ class RedisClient {
     client.get(key);
   }
   async set(key, value, duration) {
-    setTimeout(client.set(key, value), duration)
+    setTimeout(client.set(key, value), duration);
+  }
+  async del(key) {
+    client.del(key)
   }
 }
+
+const redisClient = new RedisClient();
+module.exports = redisClient;
