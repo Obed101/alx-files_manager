@@ -7,10 +7,10 @@ class DBClient {
     this.port = process.env.DB_PORT || 27017;
     this.database = process.env.DB_DATABASE || 'files_manager';
     const url = `mongodb://${this.host}:${this.port}`;
-    this.client = new MongoClient(url);
+    this.client = new MongoClient.connect(url);
   }
   isAlive() {
-    return this.client.isConnected();
+    return this.client !== false;
   }
   async nbUsers() {
     const db = this.client.db(this.database);
