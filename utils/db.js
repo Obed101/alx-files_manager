@@ -1,6 +1,6 @@
-const { MongoClient } = require('mongodb');
+const mongodb = require('mongodb');
 const Collection = require('mongodb/lib/collection');
-
+const MongoClient = mongodb.MongoClient;
 class DBClient {
   constructor() {
     this.host = process.env.DB_HOST || 'localhost';
