@@ -3,7 +3,7 @@ import redisClient from '../utils/redis.js';
 import sha1 from 'sha1';
 
 export default class UsersController {
-  async postNew (req, res) {
+  static async postNew (req, res) {
     const email = req.body.email ? req.body.email : null;
     let password = req.body.password ? req.body.password : null;
 
@@ -25,7 +25,7 @@ export default class UsersController {
     res.status(201).json({ email, id: id });
   }
 
-  async getMe (req, res) {
+  static async getMe (req, res) {
     res.status(200).json({ email: req.email, id: res._id.toString });
   }
 }
