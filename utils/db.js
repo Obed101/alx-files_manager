@@ -11,7 +11,7 @@ class DBClient {
   }
 
   isAlive () {
-    return this.client.connect.ObjectID.isValid();
+    return this.client.isConnected();
   }
 
   async nbUsers () {
