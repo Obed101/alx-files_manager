@@ -1,11 +1,11 @@
-import {createClient} from 'redis';
+import { createClient } from 'redis';
 import { promisify } from 'util';
 
 class RedisClient {
   constructor () {
     this.client = createClient();
-		this.online = true;
-   // console.log('Connected to the server')
+    this.online = true;
+    // console.log('Connected to the server')
     this.client.on('error', error => {
       console.log(error);
       this.online = false;

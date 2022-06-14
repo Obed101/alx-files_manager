@@ -1,4 +1,3 @@
-import Collection from 'mongodb/lib/collection.js';
 import mongodb from 'mongodb';
 
 class DBClient {
@@ -8,7 +7,8 @@ class DBClient {
     this.database = process.env.DB_DATABASE || 'files_manager';
     const url = `mongodb://${this.host}:${this.port}`;
     const MongoClient = mongodb.MongoClient(url);
-    this.client = new MongoClient.connect();
+    const client = new MongoClient();
+    this.client = client.connect();
   }
 
   isAlive () {
