@@ -8,6 +8,7 @@ class RedisClient {
   }
 
   isAlive () {
+    console.log(this.client.address)
     return this.client.connected;
   }
 
