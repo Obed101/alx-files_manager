@@ -1,5 +1,4 @@
 import dbClient from '../utils/db.js';
-import redisClient from '../utils/redis.js';
 import sha1 from 'sha1';
 
 export default class UsersController {
@@ -26,6 +25,15 @@ export default class UsersController {
   }
 
   static async getMe (req, res) {
-    res.status(200).json({ email: req.email, id: res._id.toString });
+    const token = req.headers['X-Token'];
+    if (!token) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    // Basic Authentication
+    const basic = req.headers.get('Authorization').split(' ')[1];
+    const credentials = Buffer.from(basic, 'base64').toString('ascii');
+    const [_email, _] = credentials.split(':');
+    
+    return res.status(200).json({ email: _email, id: res._id.toString });
   }
 }
