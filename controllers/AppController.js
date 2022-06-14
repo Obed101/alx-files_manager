@@ -1,5 +1,5 @@
-import dbClient from '../utils/db';
-import redisClient from '../utils/redis';
+import dbClient from '../utils/db.js';
+import redisClient from '../utils/redis.js';
 
 class AppController {
   static getStatus(req, res) {
@@ -19,4 +19,4 @@ class AppController {
   }
 }
 
-module.exports = AppController;
+export default AppController;
