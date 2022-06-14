@@ -13,7 +13,7 @@ class RedisClient {
     client.get(key);
   }
   async set(key, value, duration) {
-    setTimeout(client.set(key, value), duration);
+    client.set(key, value, 'EX', duration);
   }
   async del(key) {
     client.del(key);
