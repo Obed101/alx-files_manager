@@ -4,11 +4,14 @@ class RedisClient {
   constructor () {
     this.client = createClient();
     console.log('Connected to the server')
-    this.client.on('error', error => console.log(error));
+    this.client.on('error', error => {
+      console.log(error);
+      this.offline = true;
+    });
   }
 
   isAlive () {
-    console.log(this.client.address)
+    console.log(this.offline)
     return this.client.connected;
   }
 
