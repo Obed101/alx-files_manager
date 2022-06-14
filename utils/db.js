@@ -1,21 +1,17 @@
 const mongodb = require('mongodb');
 const Collection = require('mongodb/lib/collection');
-const MongoClient = mongodb.MongoClient;
+const url = `mongodb://${this.host}:${this.port}`;
 class DBClient {
   constructor() {
     this.host = process.env.DB_HOST || 'localhost';
     this.port = process.env.DB_PORT || 27017;
     this.database = process.env.DB_DATABASE || 'files_manager';
-    this.client = new MongoClient;
+    const url = `mongodb://${this.host}:${this.port}`;
+    const MongoClient = mongodb.MongoClient(url);
+    this.client = new MongoClient.connect();
   }
   isAlive() {
-    const url = `mongodb://${this.host}:${this.port}`;
-    return this.client.connect(url, (error) => {
-      if (error) {
-        return false
-      }
-      return true
-    });
+    return this.client.connect.ObjectID.isValid();
   }
   async nbUsers() {
     const db = this.client.db(this.database);
@@ -28,35 +24,4 @@ class DBClient {
 }
 
 const dbClient = new DBClient;
-
-const waitConnection = () => {
-    return new Promise((resolve, reject) => {
-        let i = 0;
-        const repeatFct = async () => {
-            await setTimeout(() => {
-                i += 1;
-                if (i >= 10) {
-                    reject()
-                }
-                else if(!dbClient.isAlive()) {
-                    repeatFct()
-                }
-                else {
-                    resolve()
-                }
-            }, 1000);
-        };
-        repeatFct();
-    })
-};
-
-(async () => {
-    console.log(dbClient.isAlive());
-    await waitConnection();
-    console.log(dbClient.isAlive());
-    console.log(await dbClient.nbUsers());
-    console.log(await dbClient.nbFiles());
-})();
-
-//const dbClient = new DBClient;
 module.exports = dbClient;
