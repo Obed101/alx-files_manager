@@ -6,8 +6,7 @@ class DBClient {
     this.port = process.env.DB_PORT || 27017;
     this.database = process.env.DB_DATABASE || 'files_manager';
     const url = `mongodb://${this.host}:${this.port}`;
-    const MongoClient = mongodb.MongoClient(url);
-    const client = new MongoClient();
+    const client = new mongodb.MongoClient(url);
     this.client = client.connect();
   }
 
