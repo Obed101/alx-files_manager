@@ -1,8 +1,6 @@
-//const mongodb = require('mongodb');
 import Collection from 'mongodb/lib/collection.js';
 import mongodb from 'mongodb';
 
-//const url = `mongodb://${this.host}:${this.port}`;
 class DBClient {
   constructor() {
     this.host = process.env.DB_HOST || 'localhost';
