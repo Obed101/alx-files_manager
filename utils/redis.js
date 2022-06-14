@@ -17,7 +17,10 @@ class RedisClient {
 
   async get (key) {
     this.client.get(key, (_, value) => {
-      return value;
+			if (_) {
+				console.log(_)
+			}      
+			return value;
     });
   }
 
