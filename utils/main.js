@@ -1,6 +1,5 @@
- cat main.js
-import redisClient from './utils/redis';
-
+//import redisClient from .'/redis';
+redisClient = require('./redis')
 (async () => {
     console.log(redisClient.isAlive());
     console.log(await redisClient.get('myKey'));
