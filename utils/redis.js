@@ -3,16 +3,16 @@ import {createClient} from 'redis';
 class RedisClient {
   constructor () {
     this.client = createClient();
-    console.log('Connected to the server')
+		this.online = true;
+   // console.log('Connected to the server')
     this.client.on('error', error => {
       console.log(error);
-      this.offline = true;
+      this.online = false;
     });
   }
 
   isAlive () {
-    console.log(this.offline)
-    return this.client.connected;
+    return this.online;
   }
 
   async get (key) {
