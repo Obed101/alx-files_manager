@@ -3,7 +3,8 @@ import {createClient} from 'redis';
 class RedisClient {
   constructor () {
     this.client = createClient();
-    console.log('Connected to the server')
+		this.offline = false;
+   // console.log('Connected to the server')
     this.client.on('error', error => {
       console.log(error);
       this.offline = true;
