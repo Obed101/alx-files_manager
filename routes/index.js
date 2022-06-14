@@ -1,5 +1,4 @@
 import express from 'express';
-import res from 'express/lib/response';
 
 import AppController from '../controllers/AppController.js';
 //import UsersController from '../controllers/UsersController';
