@@ -1,20 +1,21 @@
+/* eslint-disable import/extensions */
 import dbClient from '../utils/db.js';
 import redisClient from '../utils/redis.js';
 
 class AppController {
-  static getStatus (req, res) {
+  static getStatus(req, res) {
     res.status(200);
     res.send({
       redis: redisClient.isAlive(),
-      db: dbClient.isAlive()
+      db: dbClient.isAlive(),
     });
   }
 
-  static async getStats (req, res) {
+  static async getStats(req, res) {
     res.status(200);
     res.send({
       users: await dbClient.nbUsers(),
-      files: await dbClient.nbFiles()
+      files: await dbClient.nbFiles(),
     });
   }
 }

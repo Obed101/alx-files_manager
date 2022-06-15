@@ -2,34 +2,35 @@ import { createClient } from 'redis';
 import { promisify } from 'util';
 
 class RedisClient {
-  constructor () {
+  constructor() {
     this.client = createClient();
     this.online = true;
     // console.log('Connected to the server')
-    this.client.on('error', error => {
+    this.client.on('error', (error) => {
       console.log(error);
       this.online = false;
     });
   }
 
-  isAlive () {
+  isAlive() {
     return this.online;
   }
 
-  async get (key) {
+  async get(key) {
     const getAsync = promisify(this.client.get).bind(this.client);
     return getAsync(key);
   }
 
-  async set (key, value, duration) {
-    this.client.set(key, value, 'EX', duration, function (error) {
+  async set(key, value, duration) {
+    // eslint-disable-next-line consistent-return
+    this.client.set(key, value, 'EX', duration, (error) => {
       if (error) {
         return error;
       }
     });
   }
 
-  async del (key) {
+  async del(key) {
     this.client.del(key);
   }
 }
