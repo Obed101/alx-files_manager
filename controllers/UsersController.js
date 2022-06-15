@@ -1,10 +1,8 @@
-/* eslint-disable consistent-return */
-/* eslint-disable import/order */
-/* eslint-disable import/extensions */
-import dbClient from '../utils/db.js';
 import sha1 from 'sha1';
+import dbClient from '../utils/db';
 
 export default class UsersController {
+  // eslint-disable-next-line consistent-return
   static async postNew(req, res) {
     const email = req.body.email ? req.body.email : null;
     let password = req.body.password ? req.body.password : null;
