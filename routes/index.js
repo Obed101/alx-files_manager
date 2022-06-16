@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 
 import AppController from '../controllers/AppController.js';
