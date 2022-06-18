@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import redisClient from '../utils/redis';
+import redisClient from '../utils/redis.js';
 
 export default class AuthController {
   static async getConnect(req, res) {
