@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+export NODE_PATH='/home/faith/alx-files_manager/env/lib/node_modules'
+export NPM_CONFIG_PREFIX='/home/faith/alx-files_manager/env'
+export npm_config_prefix='/home/faith/alx-files_manager/env'
+exec 'env/bin/node' "$@"
